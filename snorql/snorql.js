@@ -11,11 +11,11 @@ String.prototype.startsWith = function(str) {
 function Snorql() {
     // modify this._endpoint to point to your SPARQL endpoint
     //this._endpoint = document.location.href.match(/^([^?]*)snorql\//)[1] + 'sparql';
-    this._endpoint = 'Placeholder';
+    this._endpoint = 'http://localhost:8890/sparql';
     // modify these to your likeing
     this._poweredByLink = 'http://www4.wiwiss.fu-berlin.de/bizer/d2r-server/';
     this._poweredByLabel = 'D2R Server';
-    this._enableNamedGraphs = false;
+    this._enableNamedGraphs = true;
 
     this._browserBase = null;
     this._namespaces = {};
@@ -62,10 +62,9 @@ function Snorql() {
         }
         if (browse && browse[1] == 'graphs') {
             var resultTitle = 'List of all named graphs:';
-            var querytext = 'SELECT DISTINCT ?namedgraph ?label\n' +
+            var querytext = 'SELECT DISTINCT ?namedgraph\n' +
                     'WHERE {\n' +
                     '  GRAPH ?namedgraph { ?s ?p ?o }\n' +
-                    '  OPTIONAL { ?namedgraph rdfs:label ?label }\n' +
                     '}\n' +
                     'ORDER BY ?namedgraph';
             var query = 'PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\n' + querytext;

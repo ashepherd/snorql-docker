@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  virtuoso:
+    container_name: snorql
+    image: ashepherd/snorql:latest
+    ports:
+      - 8888:80
